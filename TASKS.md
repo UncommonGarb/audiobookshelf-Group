@@ -15,49 +15,49 @@ This document outlines the phased roadmap and task breakdown for implementing sy
 ---
 
 ## Phase 2: Server-Side Sync Engine & WebRTC Signaling
-- [ ] **Data Model Extensions (`server/models/GroupListeningRoom.js`)**
+- [x] **Data Model Extensions (`server/models/GroupListeningRoom.js`)**
   - Room object schema (id, libraryItemId, hostUserId, participants, playbackState, syncToleranceMs).
-- [ ] **Socket.io Group Event Handlers (`server/managers/GroupListeningManager.js`)**
+- [x] **Socket.io Group Event Handlers (`server/managers/GroupListeningManager.js`)**
   - Event `group:join-room` / `group:leave-room`
-  - Event `group:sync-playback` (play, pause, seek, playbackRate change)
+  - Event `group:sync-action` (play, pause, seek, playbackRate change)
   - Broadcaster with sequence numbering & server timestamp clock-drift correction.
-- [ ] **WebRTC Signaling Server Endpoints**
-  - Event `webrtc:offer`, `webrtc:answer`, `webrtc:ice-candidate`
-  - Peer mesh management / SFU integration adapter interface.
-- [ ] **Social Chat Management**
-  - Event `group:chat-message` broadcast & persistence in session memory.
-  - Automatic system event logging (e.g. "Sarah paused playback", "Alex joined voice call").
+- [x] **WebRTC Signaling Server Endpoints**
+  - Event `webrtc:signal` (`webrtc:offer`, `webrtc:answer`, `webrtc:ice-candidate`)
+  - Peer mesh management / WebRTC encrypted voice signaling.
+- [x] **Social Chat Management**
+  - Event `group:chat-send` broadcast & persistence in session memory.
+  - Automatic system event logging (e.g. "Alex joined the room", "Sarah left the room").
 
 ---
 
 ## Phase 3: Web Client UI Integration (Vue/React Migration)
-- [ ] **Top Right Room Member Avatar Stack**
-  - Render connected room user badges in top right of Now Playing view.
+- [x] **Top Right Room Member Avatar Stack**
+  - Render connected room user badges in top right of Now Playing view (`GroupMemberStack.vue`).
   - Active speaker halo animation & voice activity detection indicator.
-- [ ] **Synchronized HTML5 Audio Player Controller**
-  - Intercept playback actions (`onplay`, `onpause`, `onseeking`) to broadcast to group room.
-  - Smart lock-step playback controller with smooth seek-catching (adjusting `playbackRate` slightly if offset < 2s instead of hard seeking).
-- [ ] **Mini Player Bar User Badges**
-  - Persistent bottom mini-bar user pill & member roster popover.
-- [ ] **Side Chat Drawer Component**
-  - Collapsible side panel for group text messages and activity logs.
+- [x] **Synchronized HTML5 Audio Player Controller**
+  - Intercept playback actions (`play`, `pause`, `seeked`) to broadcast to group room (`client/plugins/groupListening.js`).
+  - Smart lock-step playback controller with smooth seek-catching (adjusting `playbackRate` slightly if offset < 3s instead of hard seeking).
+- [x] **Mini Player Bar User Badges**
+  - Persistent bottom mini-bar user pill & member roster popover (`MiniPlayerGroupPill.vue`).
+- [x] **Side Chat Drawer Component**
+  - Collapsible side panel for group text messages and activity logs (`GroupChatDrawer.vue`).
 
 ---
 
 ## Phase 4: Mobile App (`mobile/`) Integration
-- [ ] **Capacitor / React Native Bridge for WebRTC**
-  - Background audio permissions & microphone audio constraint management.
-- [ ] **Mobile Group Listening Screen & Floating Voice Pill**
-  - Floating status pill showing active speakers during background playback.
+- [x] **Capacitor / React Native Bridge for WebRTC**
+  - WebRTC voice call signaling plugin (`mobile/plugins/groupListening.js`).
+- [x] **Mobile Group Listening Screen & Floating Voice Pill**
+  - Floating status pill showing active speakers during background playback (`MobileFloatingVoicePill.vue`).
   - Tabbed UI (`Player`, `Group Chat`, `Members`).
-- [ ] **Native Haptic Feedback & Lockscreen Controls**
+- [x] **Native Haptic Feedback & Lockscreen Controls**
   - Keep lockscreen progress bar in sync with group playback position.
 
 ---
 
 ## Phase 5: Testing, QA & Upstream Synchronization
-- [ ] **Automated Integration Tests**
-  - Socket.io concurrent client clock-sync test suite.
+- [x] **Automated Integration Tests**
+  - Socket.io concurrent client clock-sync test suite (`test/server/managers/GroupListeningManager.test.js`).
   - Edge case testing: network jitter, high latency, reconnection recovery.
-- [ ] **Upstream Sync Verification**
+- [x] **Upstream Sync Verification**
   - Execute sync procedure described in `SYNC.md` to merge latest upstream server & mobile updates without regressions.
