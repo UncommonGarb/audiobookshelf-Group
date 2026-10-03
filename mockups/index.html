@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audiobookshelf Group Listening - Interactive Mockups</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hero {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+    .card h2 {
+      color: var(--accent);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+    .card .features-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .card .features-list li {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card .features-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: bold;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+      Audiobookshelf Group Listening
+    </h1>
+    <div class="nav-links">
+      <a href="index.html" class="active">Overview</a>
+      <a href="now-playing.html">Now Playing View</a>
+      <a href="mini-player.html">Mini Player Bar</a>
+      <a href="mobile-app.html">Mobile App UI</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>Social & Synchronized Listening Experience</h1>
+    <p>
+      Explore the proposed user interface drafts and interactive mockups for Audiobookshelf's multi-user synchronized listening, WebRTC audio calls, active listener badges, and social chat features.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+      <span class="badge badge-live"><span class="dot dot-pulse"></span> Synchronized State Engine</span>
+      <span class="badge badge-sync">WebRTC Voice Call Supported</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- Card 1 -->
+    <div class="card">
+      <div>
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Now Playing View
+        </h2>
+        <p>Full screen player view with active listener room badges in top right, integrated audio voice call bar, real-time sync indicators, and live text chat drawer.</p>
+        <ul class="features-list">
+          <li>Active listener avatars in top right corner</li>
+          <li>Synchronized playback state (play/pause for all)</li>
+          <li>Integrated WebRTC Voice Call panel</li>
+          <li>Social text chat with system action events</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <a href="now-playing.html" class="btn btn-primary">Launch View →</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div>
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          Mini Player Bar
+        </h2>
+        <p>Persistent bottom player bar showing connected active room listeners, speaking indicators, group sync controls, and expandable call controls.</p>
+        <ul class="features-list">
+          <li>Compact room avatar stack in playback bar</li>
+          <li>Voice activity & mute status indicators</li>
+          <li>Quick audio call join/leave buttons</li>
+          <li>Interactive popup detail modal for room members</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <a href="mini-player.html" class="btn btn-primary">Launch View →</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div>
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Mobile App Experience
+        </h2>
+        <p>Simulated mobile device interface for the React Native/Capacitor iOS & Android mobile application with floating voice call pill and social panel.</p>
+        <ul class="features-list">
+          <li>Mobile-optimized room header banner</li>
+          <li>Floating audio call drawer and mute controls</li>
+          <li>Tabbed view for Chat, Members, and Book details</li>
+          <li>Synchronized playback controls with haptic feedback mock</li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <a href="mobile-app.html" class="btn btn-primary">Launch View →</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

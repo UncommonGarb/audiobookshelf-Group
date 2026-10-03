@@ -209,9 +209,18 @@ class SocketAuthority {
         })
         socket.on('remove_log_listener', () => Logger.removeSocketListener(socket.id))
 
+        // Group Listening listeners
+        if (this.Server?.groupListeningManager) {
+          this.Server.groupListeningManager.attachSocketListeners(socket, this.clients[socket.id])
+        }
+
         // Sent automatically from socket.io clients
         socket.on('disconnect', (reason) => {
           Logger.removeSocketListener(socket.id)
+
+          if (this.Server?.groupListeningManager) {
+            this.Server.groupListeningManager.handleSocketDisconnect(socket.id)
+          }
 
           const _client = this.clients[socket.id]
           if (!_client) {

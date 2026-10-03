@@ -39,6 +39,7 @@ const CronManager = require('./managers/CronManager')
 const ApiCacheManager = require('./managers/ApiCacheManager')
 const BinaryManager = require('./managers/BinaryManager')
 const ShareManager = require('./managers/ShareManager')
+const GroupListeningManager = require('./managers/GroupListeningManager')
 const LibraryScanner = require('./scanner/LibraryScanner')
 
 //Import the main Passport and Express-Session library
@@ -113,6 +114,7 @@ class Server {
 
     // Managers
     this.emailManager = new EmailManager()
+    this.groupListeningManager = GroupListeningManager
     this.backupManager = new BackupManager()
     this.abMergeManager = new AbMergeManager()
     this.playbackSessionManager = new PlaybackSessionManager()
@@ -184,6 +186,7 @@ class Server {
     await this.cleanUserData() // Remove invalid user item progress
     await CacheManager.ensureCachePaths()
 
+    this.groupListeningManager.initialize(this)
     await ShareManager.init()
     await this.backupManager.init()
     await RssFeedManager.init()
