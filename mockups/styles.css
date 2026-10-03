@@ -1,28 +1,28 @@
-/* Audiobookshelf Group Listening Mockup Styles */
+/* Audiobookshelf Official Theme Palette & Styling */
 :root {
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --bg-tertiary: #374151;
-  --bg-card: #1e293b;
-  --bg-hover: #4b5563;
-  --accent: #f59e0b;
-  --accent-hover: #d97706;
-  --text-primary: #f9fafb;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
-  --success: #10b981;
-  --danger: #ef4444;
-  --info: #3b82f6;
-  --border-color: #374151;
-  --radius: 12px;
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --bg-primary: #232323;       /* Audiobookshelf --color-primary (#232323) */
+  --bg-secondary: #333333;     /* Audiobookshelf --color-black-400 (#333333) */
+  --bg-tertiary: #373838;      /* Audiobookshelf --color-bg (#373838) */
+  --bg-card: #2a2a2a;          /* Dark card surface */
+  --bg-hover: #444444;         /* Audiobookshelf --color-black-300 (#444444) */
+  --accent: #1ad691;           /* Audiobookshelf Official Accent Green (#1ad691) */
+  --accent-hover: #15b378;     /* Darker accent green */
+  --text-primary: #ffffff;     /* White text */
+  --text-secondary: #bbbbbb;   /* Audiobookshelf --color-black-50 (#bbbbbb) */
+  --text-muted: #666666;       /* Audiobookshelf --color-black-100 (#666666) */
+  --success: #1ad691;          /* Audiobookshelf Accent Green */
+  --danger: #ff5252;           /* Audiobookshelf --color-error (#ff5252) */
+  --info: #2196f3;             /* Audiobookshelf --color-info (#2196f3) */
+  --border-color: #444444;     /* Audiobookshelf --color-black-300 (#444444) */
+  --radius: 8px;
+  --shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -34,17 +34,17 @@ body {
 }
 
 header {
-  background-color: var(--bg-secondary);
+  background-color: #111111;
   border-bottom: 1px solid var(--border-color);
-  padding: 1rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 header h1 {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -53,21 +53,22 @@ header h1 {
 
 .nav-links {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .nav-links a {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   transition: all 0.2s;
+  font-weight: 600;
 }
 
 .nav-links a:hover, .nav-links a.active {
   background-color: var(--bg-tertiary);
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 .badge {
@@ -81,15 +82,15 @@ header h1 {
 }
 
 .badge-live {
-  background-color: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background-color: rgba(26, 214, 145, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(26, 214, 145, 0.3);
 }
 
 .badge-sync {
-  background-color: rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.4);
+  background-color: rgba(251, 140, 0, 0.15);
+  color: #fb8c00;
+  border: 1px solid rgba(251, 140, 0, 0.3);
 }
 
 .dot {
@@ -129,7 +130,7 @@ header h1 {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #4b5563;
+  background-color: #444444;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,8 +159,8 @@ header h1 {
 }
 
 .status-indicator.speaking {
-  background-color: var(--success);
-  box-shadow: 0 0 6px var(--success);
+  background-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
   animation: pulse 1s infinite;
 }
 
@@ -173,13 +174,13 @@ header h1 {
 
 /* Buttons & Inputs */
 .btn {
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-secondary);
   color: var(--text-primary);
-  border: none;
+  border: 1px solid var(--border-color);
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -193,7 +194,8 @@ header h1 {
 
 .btn-primary {
   background-color: var(--accent);
-  color: #000;
+  color: #111111;
+  border: none;
 }
 
 .btn-primary:hover {
@@ -203,6 +205,7 @@ header h1 {
 .btn-danger {
   background-color: var(--danger);
   color: #fff;
+  border: none;
 }
 
 .btn-icon {
@@ -220,8 +223,8 @@ header h1 {
 
 /* Voice Call Bar */
 .voice-call-bar {
-  background-color: #1a2332;
-  border: 1px solid #2d3748;
+  background-color: #1a1a1a;
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 0.75rem 1.25rem;
   display: flex;
@@ -256,7 +259,7 @@ header h1 {
 .chat-header {
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
-  font-weight: 600;
+  font-weight: 700;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -283,7 +286,7 @@ header h1 {
   align-self: center;
   max-width: 100%;
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   background: var(--bg-tertiary);
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -312,8 +315,8 @@ header h1 {
 
 .chat-msg.outgoing .bubble {
   background-color: var(--accent);
-  color: #000;
-  font-weight: 500;
+  color: #111111;
+  font-weight: 600;
 }
 
 .chat-msg .timestamp {
@@ -336,7 +339,7 @@ header h1 {
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   padding: 0.5rem 0.8rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.875rem;
 }
 
@@ -356,7 +359,7 @@ header h1 {
 .audio-wave span {
   width: 3px;
   height: 100%;
-  background-color: var(--success);
+  background-color: var(--accent);
   border-radius: 2px;
   animation: wave 1.2s ease-in-out infinite;
 }

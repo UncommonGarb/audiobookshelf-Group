@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audiobookshelf - Group Listening Now Playing</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="styles.css">
   <style>
     .now-playing-container {
@@ -11,7 +12,7 @@
       grid-template-columns: 1fr 340px;
       gap: 1.5rem;
       flex: 1;
-      height: calc(100vh - 110px);
+      height: calc(100vh - 100px);
     }
 
     .player-main {
@@ -32,7 +33,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(17, 17, 17, 0.85);
       backdrop-filter: blur(8px);
       padding: 0.5rem 1rem;
       border-radius: 30px;
@@ -47,39 +48,48 @@
 
     .room-info .title {
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
     }
 
     .room-info .sub {
       font-size: 0.7rem;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
     .book-details {
       display: flex;
       gap: 2rem;
       align-items: center;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
       margin-bottom: 2rem;
     }
 
     .book-cover {
-      width: 220px;
-      height: 220px;
-      border-radius: 12px;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.5);
-      object-fit: cover;
-      background: #374151;
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+      background: linear-gradient(135deg, #1ad691, #0f855a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-align: center;
+      padding: 1rem;
     }
 
     .book-meta h2 {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
     }
 
     .book-meta h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
       margin-bottom: 1rem;
       font-weight: 400;
@@ -87,11 +97,11 @@
 
     /* Sync notice banner */
     .sync-notice {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: rgba(251, 140, 0, 0.12);
+      border: 1px solid rgba(251, 140, 0, 0.3);
       padding: 0.6rem 1rem;
-      border-radius: 8px;
-      color: #fcd34d;
+      border-radius: 6px;
+      color: #fb8c00;
       font-size: 0.85rem;
       display: flex;
       align-items: center;
@@ -99,7 +109,7 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Playback controls */
+    /* Playback controls matching PlayerUi.vue */
     .controls-wrapper {
       margin-top: auto;
       display: flex;
@@ -131,9 +141,10 @@
     }
 
     .time-stamp {
+      font-family: 'Ubuntu Mono', monospace;
       font-size: 0.85rem;
       color: var(--text-secondary);
-      width: 50px;
+      width: 55px;
     }
 
     .buttons-row {
@@ -148,17 +159,27 @@
       height: 56px;
       border-radius: 50%;
       background-color: var(--accent);
-      color: #000;
+      color: #111;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 4px 12px rgba(26, 214, 145, 0.3);
     }
 
     .btn-play:hover {
       transform: scale(1.05);
+      background-color: var(--accent-hover);
+    }
+
+    .player-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
     }
   </style>
 </head>
@@ -166,7 +187,7 @@
 
   <header>
     <h1>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+      <span class="material-symbols-outlined" style="font-size:28px;">graphic_eq</span>
       Audiobookshelf
     </h1>
     <div class="nav-links">
@@ -186,8 +207,8 @@
         <!-- Top Right Users Badge -->
         <div class="room-header">
           <div class="room-info">
-            <span class="title">Sci-Fi Book Club Room</span>
-            <span class="sub">4 Members Listening</span>
+            <span class="title">Sci-Fi Group Listen</span>
+            <span class="sub">4 Members Active</span>
           </div>
           <div class="avatar-stack">
             <div class="avatar" title="Alex (Host)">
@@ -202,23 +223,21 @@
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Marcus">
               <span class="status-indicator muted" title="Muted"></span>
             </div>
-            <div class="avatar" style="background:#374151; font-size:0.75rem;">+1</div>
+            <div class="avatar" style="background:#444; font-size:0.75rem;">+1</div>
           </div>
         </div>
 
         <!-- Book Main View -->
         <div class="book-details">
-          <div style="position:relative;">
-            <div style="width:200px; height:200px; background: linear-gradient(135deg, #f59e0b, #b45309); border-radius:12px; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-weight:bold; font-size:1.2rem; text-align:center; padding:1rem; box-shadow:0 10px 20px rgba(0,0,0,0.5);">
-              PROJECT HAIL MARY
-              <span style="font-weight:normal; font-size:0.8rem; margin-top:0.5rem; opacity:0.8;">Andy Weir</span>
-            </div>
+          <div class="book-cover">
+            PROJECT HAIL MARY
+            <span style="font-size:0.8rem; font-weight:normal; margin-top:0.4rem;">Andy Weir</span>
           </div>
           <div class="book-meta">
             <h2>Project Hail Mary</h2>
-            <h3>Written by Andy Weir • Narrated by Ray Porter</h3>
+            <h3>Andy Weir • Narrated by Ray Porter</h3>
             <div style="display:flex; gap:0.5rem; align-items:center;">
-              <span class="badge badge-live"><span class="dot dot-pulse"></span> Synchronized Session</span>
+              <span class="badge badge-live"><span class="dot dot-pulse"></span> Group Room Active</span>
               <span class="badge badge-sync">Chapter 14: Eridian Contact</span>
             </div>
           </div>
@@ -231,13 +250,13 @@
               <span></span><span></span><span></span><span></span>
             </div>
             <div>
-              <div style="font-size:0.85rem; font-weight:600;">Voice Call Active</div>
+              <div style="font-size:0.85rem; font-weight:700;">Voice Call Channel</div>
               <div style="font-size:0.75rem; color:var(--text-secondary);" id="activeSpeakerText">Alex is speaking...</div>
             </div>
           </div>
           <div class="voice-call-actions">
             <button class="btn" id="btnMute" onclick="toggleMute()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+              <span class="material-symbols-outlined" style="font-size:18px;">mic</span>
               Mute Mic
             </button>
             <button class="btn btn-danger" onclick="leaveCall()">Leave Voice</button>
@@ -246,12 +265,19 @@
 
         <!-- Notification Banner -->
         <div class="sync-notice" id="syncNotice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span id="syncText">Synchronized listening mode active. Any participant pausing or seeking will sync to all members.</span>
+          <span class="material-symbols-outlined" style="font-size:20px;">sync</span>
+          <span id="syncText">Synchronized mode active. Pausing or seeking synchronizes instantly across all members.</span>
         </div>
 
         <!-- Audio Player Controls -->
         <div class="controls-wrapper">
+
+          <div class="player-toolbar">
+            <span class="material-symbols-outlined" title="Bookmarks">bookmark_border</span>
+            <span class="material-symbols-outlined" title="Chapters">format_list_bulleted</span>
+            <span class="material-symbols-outlined" title="Player Settings">settings_slow_motion</span>
+          </div>
+
           <div class="progress-bar-container">
             <span class="time-stamp">04:12:30</span>
             <div class="progress-bar" onclick="seekAudio(event)">
@@ -261,14 +287,14 @@
           </div>
 
           <div class="buttons-row">
-            <button class="btn btn-icon" title="Jump Back 15s" onclick="triggerSyncEvent('Marcus rewound 15s')">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19l-9-7 9-7v14z"/><path d="M22 19l-9-7 9-7v14z"/></svg>
+            <button class="btn btn-icon" title="Jump Back 15s" onclick="triggerSyncEvent('Rewound 15s')">
+              <span class="material-symbols-outlined">replay_10</span>
             </button>
             <button class="btn-play" id="mainPlayBtn" onclick="togglePlayback()">
-              <svg id="playIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span class="material-symbols-outlined" style="font-size:36px;" id="playIcon">play_arrow</span>
             </button>
-            <button class="btn btn-icon" title="Jump Forward 15s" onclick="triggerSyncEvent('Alex skipped forward 15s')">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 5l9 7-9 7V5z"/><path d="M2 5l9 7-9 7V5z"/></svg>
+            <button class="btn btn-icon" title="Jump Forward 15s" onclick="triggerSyncEvent('Skipped forward 15s')">
+              <span class="material-symbols-outlined">forward_10</span>
             </button>
           </div>
         </div>
@@ -284,7 +310,7 @@
 
         <div class="chat-messages" id="chatMessages">
           <div class="chat-msg system">
-            Room created by Alex. Synchronized listening enabled.
+            Group listening room created. Synchronized playback enabled.
           </div>
 
           <div class="chat-msg incoming">
@@ -294,12 +320,12 @@
           </div>
 
           <div class="chat-msg system" id="lastSyncSysMsg">
-            Sarah paused playback for everyone.
+            Sarah paused playback for the group.
           </div>
 
           <div class="chat-msg incoming">
             <span class="sender">Marcus</span>
-            <div class="bubble">Wait, can we rewind 30 seconds? I missed Rocky's sentence.</div>
+            <div class="bubble">Can we rewind 30 seconds? I missed Rocky's sentence.</div>
             <span class="timestamp">10:15 AM</span>
           </div>
 
@@ -311,7 +337,7 @@
         </div>
 
         <div class="chat-input-area">
-          <input type="text" id="chatInput" class="chat-input" placeholder="Type a message to the group..." onkeypress="handleKeyPress(event)">
+          <input type="text" id="chatInput" class="chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
           <button class="btn btn-primary" onclick="sendMessage()">Send</button>
         </div>
       </div>
@@ -325,12 +351,12 @@
 
     function togglePlayback() {
       isPlaying = !isPlaying;
-      const btn = document.getElementById('mainPlayBtn');
+      const icon = document.getElementById('playIcon');
       if (isPlaying) {
-        btn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+        icon.innerText = 'pause';
         addSystemMessage("You resumed playback for the group.");
       } else {
-        btn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+        icon.innerText = 'play_arrow';
         addSystemMessage("You paused playback for the group.");
       }
     }
@@ -339,11 +365,11 @@
       isMuted = !isMuted;
       const btn = document.getElementById('btnMute');
       if (isMuted) {
-        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/></svg> Unmute Mic`;
+        btn.innerHTML = `<span class="material-symbols-outlined" style="font-size:18px;">mic_off</span> Unmute Mic`;
         btn.style.backgroundColor = 'var(--danger)';
       } else {
-        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg> Mute Mic`;
-        btn.style.backgroundColor = 'var(--bg-tertiary)';
+        btn.innerHTML = `<span class="material-symbols-outlined" style="font-size:18px;">mic</span> Mute Mic`;
+        btn.style.backgroundColor = 'var(--bg-secondary)';
       }
     }
 
